@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Esse arquivo xml tem a função de definir as posições iniciais e finais,
+    definir as regras da animação -->
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Essa TAG define as principais regras de negócio da animação -->
+    <Transition
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/end"
+        app:duration="400">
+
+        <OnClick
+            app:targetId="@id/detail_player"
+            app:clickAction="toggle" />
+
+    </Transition>
+
+    <!-- Essa TAG serve para definir as posições dos componentes, podendo ser
+        usado para as iniciais e finais, podendo ser de varios componentes ao
+        mesmo tempo -->
+    <!-- Aqui é definido as posições iniciais -->
+    <ConstraintSet
+        android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/detail_player"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
+            />
+
+    </ConstraintSet>
+
+    <!-- Aqui é definido as posições finais -->
+    <ConstraintSet
+        android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/detail_player"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="17:3"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            />
+
+    </ConstraintSet>
+
+</MotionScene>
