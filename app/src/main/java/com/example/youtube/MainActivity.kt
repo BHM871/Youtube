@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.commun.VideoAdapter
 import com.example.youtube.databinding.ActivityMainBinding
 import com.example.youtube.databinding.VideoDetailBinding
+import com.example.youtube.databinding.VideoDetailContentBinding
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
 import com.google.gson.GsonBuilder
