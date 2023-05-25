@@ -19,18 +19,8 @@
         android:id="@+id/container_scroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/surface_player">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </LinearLayout>
+        android:background="?colorOnPrimary"
+        android:orientation="vertical">
 
     </LinearLayout>
 
@@ -51,9 +41,8 @@
             android:id="@+id/mini_video_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="42dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu"
@@ -63,12 +52,12 @@
             android:id="@+id/mini_video_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="42dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="10dp"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu" />
+            android:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu"
+            android:textColor="@android:color/darker_gray" />
 
     </LinearLayout>
 
@@ -95,7 +84,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:alpha="0"
         android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
         app:layout_constraintStart_toStartOf="@id/video_player"
         tools:alpha="1" />
@@ -227,28 +215,25 @@
         android:id="@+id/video_player_button"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_play_arrow_black_24dp"
-        app:layout_constraintEnd_toStartOf="@id/cancel_button"
-        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-        app:layout_constraintTop_toTopOf="@id/video_player_title" />
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/ic_play_arrow_black_24dp" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/cancel_button"
+        android:id="@+id/video_cancel_button"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="5dp"
-        android:src="@drawable/ic_play_arrow_black_24dp"
-        app:layout_constraintEnd_toEndOf="@id/video_player_title"
-        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-        app:layout_constraintTop_toTopOf="@id/video_player_title" />
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_close_black_24dp" />
 
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/seek_bar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingEnd="0dp"
         android:paddingStart="0dp"
-        app:layout_constraintTop_toTopOf="@id/container_scroll"
-        app:layout_constraintBottom_toTopOf="@id/container_scroll" />
+        android:paddingEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        app:layout_constraintStart_toStartOf="@id/video_player"
+        app:layout_constraintTop_toBottomOf="@id/video_player" />
 
 </merge>

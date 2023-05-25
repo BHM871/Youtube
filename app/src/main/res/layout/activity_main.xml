@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- MotionLayout é destinado para animações de elementos xml,
+<?xml version="1.0" encoding="utf-8"?><!-- MotionLayout é destinado para animações de elementos xml,
     ele é um filho da classe ConstraintLayout, ou seja, ele
     depende de constraints para animas os elementos -->
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,6 +11,7 @@
     tools:context=".MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -45,15 +45,13 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/video_detail" />
+    <include layout="@layout/video_detail" />
 
     <FrameLayout
         android:id="@+id/main_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFF">
+        android:background="?colorOnPrimary">
 
         <ProgressBar
             android:layout_width="wrap_content"

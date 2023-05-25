@@ -3,13 +3,12 @@ package com.example.youtube
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.commun.VideoAdapter
 import com.example.youtube.databinding.ActivityMainBinding
+import com.example.youtube.databinding.VideoDetailBinding
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
 import com.google.gson.GsonBuilder
@@ -20,6 +19,7 @@ import okhttp3.Request
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mergeB: VideoDetailBinding
 
     private lateinit var videosAdapter: VideoAdapter
 
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        mergeB = VideoDetailBinding.bind(binding.root)
 
         setContentView(binding.root)
 
@@ -36,10 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         val videos = mutableListOf<Video>()
         videosAdapter = VideoAdapter(videos) {
-            showOverlayView(Video)
+            showOverlayView(it)
         }
 
-        binding.include.viewLayer.alpha = 0.0f
+        mergeB.viewLayer.alpha = 0.0f
 
         binding.mainRv.layoutManager = LinearLayoutManager(this@MainActivity)
         binding.mainRv.adapter = videosAdapter
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     videos.clear()
                     videos.addAll(it.data)
                     videosAdapter.notifyDataSetChanged()
-                    binding.mainProgress.visibility = View.GONE
+                    binding.mainProgress.alpha = 0f
                 }
             }
         }
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showOverlayView(video: Video) {
-        val layer = binding.include.viewLayer
+        val layer = mergeB.viewLayer
 
         layer.animate().apply {
             duration = 400
@@ -72,29 +73,38 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.container.setTransitionListener(object : MotionLayout.TransitionListener {
-            override fun onTransitionStarted(motionLayout: MotionLayout?,
-                                             startId: Int,
-                                             endId: Int) {
+            override fun onTransitionStarted(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int
+            ) {
             }
 
-            override fun onTransitionChange(motionLayout: MotionLayout?,
-                                            startId: Int,
-                                            endId: Int,
-                                            progress: Float) {
-                if (progress > 0.5f)
+            override fun onTransitionChange(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
+                if (progress > 0.5f) {
                     layer.alpha = 1.0f - progress
-                else
+                } else {
                     layer.alpha = 0.5f
+                }
             }
 
-            override fun onTransitionCompleted(motionLayout: MotionLayout?,
-                                               currentId: Int) {
+            override fun onTransitionCompleted(
+                motionLayout: MotionLayout?,
+                currentId: Int
+            ) {
             }
 
-            override fun onTransitionTrigger(motionLayout: MotionLayout?,
-                                             targetId: Int,
-                                             positive: Boolean,
-                                             progress: Float) {
+            override fun onTransitionTrigger(
+                motionLayout: MotionLayout?,
+                targetId: Int,
+                positive: Boolean,
+                progress: Float
+            ) {
             }
         })
     }
@@ -118,7 +128,6 @@ class MainActivity : AppCompatActivity() {
                 null
             }
         } catch (e: Exception) {
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
             null
         }
     }
