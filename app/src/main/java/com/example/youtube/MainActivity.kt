@@ -12,7 +12,9 @@ import com.example.youtube.databinding.VideoDetailBinding
 import com.example.youtube.databinding.VideoDetailContentBinding
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
+import com.example.youtube.model.videos
 import com.google.gson.GsonBuilder
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = ""
 
         val videos = mutableListOf<Video>()
-        videosAdapter = VideoAdapter(videos) {
+        videosAdapter = VideoAdapter(videos, false) {
             showOverlayView(it)
         }
 
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun showOverlayView(video: Video) {
         val layer = mergeB.viewLayer
 
@@ -108,6 +111,20 @@ class MainActivity : AppCompatActivity() {
             ) {
             }
         })
+
+        val similarAdapter = VideoAdapter(videos(), true){}
+        mergeB.inc.videoContentRvSimilar.layoutManager = LinearLayoutManager(this@MainActivity)
+        mergeB.inc.videoContentRvSimilar.adapter = similarAdapter
+
+        mergeB.miniVideoTitle.text = video.title
+        mergeB.miniVideoSubtitle.text = video.publisher.name
+
+        mergeB.inc.videoContentTxtTitle.text = video.title
+        mergeB.inc.videoContentTxtViews.text = video.viewCountLabel
+        mergeB.inc.videoContentTxtChannel.text = video.publisher.name
+        Picasso.get().load(video.publisher.pictureProfileUrl).into(mergeB.inc.videoContentImgChannel)
+
+        similarAdapter.notifyDataSetChanged()
     }
 
     private fun getVideos(): ListVideo? {
