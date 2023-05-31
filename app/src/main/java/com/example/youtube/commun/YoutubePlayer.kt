@@ -49,18 +49,18 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback {
             //Prepara a media
             it.setMediaSource(videoSource)
             it.prepare()
-            /*it.addListener(object : Player.Listener {
+            it.addListener(object : Player.Listener {
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
                     if (isPlaying) {
                         trackTime()
                     }
                 }
-            })*/
+            })
             play()
         }
     }
 
-    /*private fun trackTime() {
+    private fun trackTime() {
         mediaPlayer?.let {
             youtubePlayerListener?.onTrackTime(it.currentPosition * 100 / it.duration)
             if(it.isPlaying) {
@@ -70,7 +70,7 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback {
                 handler.postDelayed(runnable, 500)
             }
         }
-    }*/
+    }
 
     //Faz a Media rodar
     fun play() {

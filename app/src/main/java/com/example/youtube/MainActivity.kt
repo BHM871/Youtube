@@ -13,6 +13,7 @@ import com.example.youtube.databinding.ActivityMainBinding
 import com.example.youtube.databinding.VideoDetailBinding
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
+import com.example.youtube.model.formatTime
 import com.example.youtube.model.videos
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
@@ -138,7 +139,7 @@ class MainActivity : AppCompatActivity() {
 
         mergeB.videoPlayer.visibility = View.GONE
         youtuberPlayer.setUrl(video.videoUrl)
-        /*youtuberPlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener {
+        youtuberPlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener {
             override fun onPrepared() {
             }
 
@@ -148,7 +149,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        mergeB.durationPlayer.text = video.duration.formatTime()*/
+        mergeB.durationPlayer.text = video.duration.formatTime()
 
         val similarAdapter = VideoAdapter(videos(), true){}
         mergeB.inc.videoContentRvSimilar.layoutManager = LinearLayoutManager(this@MainActivity)
