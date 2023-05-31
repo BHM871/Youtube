@@ -3,13 +3,14 @@ package com.example.youtube
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.commun.VideoAdapter
+import com.example.youtube.commun.YoutubePlayer
 import com.example.youtube.databinding.ActivityMainBinding
 import com.example.youtube.databinding.VideoDetailBinding
-import com.example.youtube.databinding.VideoDetailContentBinding
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
 import com.example.youtube.model.videos
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var videosAdapter: VideoAdapter
 
+    private lateinit var youtuberPlayer: YoutubePlayer
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         mergeB = VideoDetailBinding.bind(binding.root)
 
         setContentView(binding.root)
+
+        youtuberPlayer = YoutubePlayer(this)
 
         setSupportActionBar(binding.mainToolbar)
         supportActionBar?.title = ""
@@ -60,6 +65,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        preparePlayer()
+    }
+
+    override fun onPause() {
+        youtuberPlayer.pause()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        youtuberPlayer.release()
+        super.onDestroy()
+    }
+
+    /*Função que prepara o tocador de video, o CallBack notica as principais ações,
+    a classe YoutubePlayer é filha de SurfaceHolder.Callback e prepara o video, como o RecyclerView.Holder.*/
+
+    private fun preparePlayer() {
+        mergeB.surfacePlayer.holder.addCallback(youtuberPlayer)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -112,6 +136,20 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        mergeB.videoPlayer.visibility = View.GONE
+        youtuberPlayer.setUrl(video.videoUrl)
+        /*youtuberPlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener {
+            override fun onPrepared() {
+            }
+
+            override fun onTrackTime(currrentPosition: Long) {
+                mergeB.seekBar.progress = currrentPosition.toInt()
+                mergeB.currentPlayer.text = currrentPosition.formatTime()
+            }
+        }
+
+        mergeB.durationPlayer.text = video.duration.formatTime()*/
+
         val similarAdapter = VideoAdapter(videos(), true){}
         mergeB.inc.videoContentRvSimilar.layoutManager = LinearLayoutManager(this@MainActivity)
         mergeB.inc.videoContentRvSimilar.adapter = similarAdapter
@@ -149,5 +187,4 @@ class MainActivity : AppCompatActivity() {
             null
         }
     }
-
 }

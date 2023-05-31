@@ -42,7 +42,8 @@
         android:layout_height="0dp"
         android:background="?colorOnPrimary"
         android:orientation="vertical"
-        android:paddingEnd="70dp">
+        android:paddingEnd="70dp"
+        tools:ignore="RtlSymmetry">
 
         <TextView
             android:id="@+id/mini_video_title"
@@ -52,8 +53,8 @@
             android:layout_marginTop="10dp"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu"
-            android:textColor="?colorOnSecondary" />
+            android:textColor="?colorOnSecondary"
+            tools:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu" />
 
         <TextView
             android:id="@+id/mini_video_subtitle"
@@ -63,11 +64,13 @@
             android:layout_marginTop="3dp"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            tools:text="higahdjfhdljfhalskdjfhalsdhfljhdsfhawuiadjfhalskdjfhweiu" />
 
     </LinearLayout>
 
+    <!--O elemento SurfaceView serve para fazer a manipulação de dados que necessitam
+     de muito processamento, como video, audio, camera, elementos 3D, etc. -->
     <SurfaceView
         android:id="@+id/surface_player"
         android:layout_width="0dp"
@@ -135,41 +138,35 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:alpha="0"
         android:src="@drawable/ic_fullscreen_black_24dp"
         app:layout_constraintBottom_toBottomOf="@id/video_player"
-        app:layout_constraintEnd_toEndOf="@id/video_player"
-        tools:alpha="1" />
+        app:layout_constraintEnd_toEndOf="@id/video_player" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/duration_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:alpha="0"
         android:text="00:00"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/full_player"
         app:layout_constraintEnd_toStartOf="@id/full_player"
-        app:layout_constraintTop_toTopOf="@id/full_player"
-        tools:alpha="1" />
+        app:layout_constraintTop_toTopOf="@id/full_player" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/current_player"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="9dp"
         android:layout_marginStart="10dp"
-        android:alpha="0"
         android:text="00:00"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/full_player"
         app:layout_constraintStart_toStartOf="@id/hide_player"
-        app:layout_constraintTop_toTopOf="@id/full_player"
-        tools:alpha="1" />
+        app:layout_constraintTop_toTopOf="@id/full_player" />
 
     <ProgressBar
         android:id="@+id/progress"

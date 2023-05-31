@@ -109,3 +109,15 @@ fun Date.formatted() : String =
 
 fun String.toDate() : Date =
     SimpleDateFormat("yyyy-MM-dd", Locale("pt", "BR")).parse(this) ?: Date()
+
+/*fun Long.formatTime() : String {
+    val minutes = this / 1000 / 60
+    val seconds = this / 1000 % 60
+    return String.format("%02d:%02d", minutes, seconds)
+}
+
+fun Int.formatTime() : String {
+    val minutes = this / 100 / 60
+    val seconds = this / 100 % 60
+    return String.format("%02d:%02d", minutes, seconds)
+}*/
