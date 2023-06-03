@@ -143,13 +143,14 @@ class MainActivity : AppCompatActivity() {
             override fun onPrepared() {
             }
 
-            override fun onTrackTime(currrentPosition: Long) {
+            override fun onTrackTime(currrentPosition: Long, totalTime: Long) {
                 mergeB.seekBar.progress = currrentPosition.toInt()
-                mergeB.currentPlayer.text = currrentPosition.formatTime()
+                mergeB.currentPlayer.text = currrentPosition.formatTime(totalTime)
+                mergeB.durationPlayer.text = totalTime.formatTime()
             }
         }
 
-        mergeB.durationPlayer.text = video.duration.formatTime()
+        //mergeB.durationPlayer.text = video.duration.formatTime()
 
         val similarAdapter = VideoAdapter(videos(), true){}
         mergeB.inc.videoContentRvSimilar.layoutManager = LinearLayoutManager(this@MainActivity)

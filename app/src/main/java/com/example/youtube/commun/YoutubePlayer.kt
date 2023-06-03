@@ -62,7 +62,7 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback {
 
     private fun trackTime() {
         mediaPlayer?.let {
-            youtubePlayerListener?.onTrackTime(it.currentPosition * 100 / it.duration)
+            youtubePlayerListener?.onTrackTime(it.currentPosition * 100 / it.duration, it.duration)
             if(it.isPlaying) {
                 runnable = Runnable {
                     trackTime()
@@ -89,7 +89,7 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback {
 
     interface YoutubePlayerListener {
         fun onPrepared()
-        fun onTrackTime(currrentPosition: Long)
+        fun onTrackTime(currrentPosition: Long, totalTime: Long)
     }
 
 }

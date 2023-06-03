@@ -110,14 +110,22 @@ fun Date.formatted() : String =
 fun String.toDate() : Date =
     SimpleDateFormat("yyyy-MM-dd", Locale("pt", "BR")).parse(this) ?: Date()
 
-fun Long.formatTime() : String {
-    val minutes = this / 1000 / 60
-    val seconds = this / 1000 % 60
+fun Long.formatTime(v: Long? = null) : String {
+    var minutes = 0L
+    var seconds = 0L
+    if (v != null) {
+        val value = this * v / 100
+        minutes = value / 1000 / 60
+        seconds = value / 1000 % 60
+    } else {
+        minutes = this / 1000 / 60
+        seconds = this / 1000 % 60
+    }
     return String.format("%02d:%02d", minutes, seconds)
 }
 
 fun Int.formatTime() : String {
-    val minutes = this / 100 / 60
-    val seconds = this / 100 % 60
+    val minutes = this / 10 / 60
+    val seconds = this / 10 % 60
     return String.format("%02d:%02d", minutes, seconds)
 }
