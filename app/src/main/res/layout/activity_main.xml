@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!-- MotionLayout é destinado para animações de elementos xml,
     ele é um filho da classe ConstraintLayout, ou seja, ele
     depende de constraints para animas os elementos -->
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.youtube.commun.TouchMotion xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -61,4 +61,4 @@
 
     </FrameLayout>
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</com.example.youtube.commun.TouchMotion>

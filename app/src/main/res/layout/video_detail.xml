@@ -175,7 +175,8 @@
         app:layout_constraintBottom_toBottomOf="@id/video_player"
         app:layout_constraintEnd_toEndOf="@id/video_player"
         app:layout_constraintStart_toStartOf="@id/video_player"
-        app:layout_constraintTop_toTopOf="@id/video_player" />
+        app:layout_constraintTop_toTopOf="@id/video_player"
+        android:visibility="gone"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/play_button"

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,6 +68,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        mergeB.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromToUser: Boolean) {
+                if (fromToUser) {
+                    youtuberPlayer.seek(progress.toLong())
+                }
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
         preparePlayer()
     }
 
@@ -143,14 +157,13 @@ class MainActivity : AppCompatActivity() {
             override fun onPrepared() {
             }
 
-            override fun onTrackTime(currrentPosition: Long, totalTime: Long) {
-                mergeB.seekBar.progress = currrentPosition.toInt()
-                mergeB.currentPlayer.text = currrentPosition.formatTime(totalTime)
-                mergeB.durationPlayer.text = totalTime.formatTime()
+            override fun onTrackTime(currentPosition: Long, totalTime: Long, percente: Long) {
+                mergeB.seekBar.progress = percente.toInt()
+                mergeB.currentPlayer.text = currentPosition.formatTime()
             }
         }
 
-        //mergeB.durationPlayer.text = video.duration.formatTime()
+        mergeB.durationPlayer.text = video.duration.formatTime()
 
         val similarAdapter = VideoAdapter(videos(), true){}
         mergeB.inc.videoContentRvSimilar.layoutManager = LinearLayoutManager(this@MainActivity)
